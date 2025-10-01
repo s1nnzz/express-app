@@ -15,6 +15,7 @@ yarn-error.log*
 /client/dist/
 /client/build/
 /server/dist/
+/client/parcel-cache
 
 # IDE/Editor files
 .vscode/
