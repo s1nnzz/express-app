@@ -12,10 +12,10 @@ yarn-error.log*
 .env.production.local
 
 # Build outputs
-/client/dist/
-/client/build/
-/server/dist/
-/client/parcel-cache
+client/dist/
+client/build/
+server/dist/
+client/parcel-cache
 
 # IDE/Editor files
 .vscode/
@@ -64,5 +64,8 @@ jspm_packages/
 
 /dist
 
-/server/node_modules
-/client/node_modules
+server/node_modules
+client/node_modules
+server/package-lock.json
+client/package-lock.json
+server/package-lock.json
