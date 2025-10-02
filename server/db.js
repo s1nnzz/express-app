@@ -44,7 +44,7 @@ async function RegisterUser(email, password, res) {
 	return result;
 }
 
-async function LoginUser(email, password) {
+async function LoginUser(email, password, res) {
 	const [existingUsers] = await pool
 		.promise()
 		.execute("SELECT * FROM users WHERE email = ?", [email]);
@@ -60,9 +60,14 @@ async function LoginUser(email, password) {
 
 	console.log(password, hashedPassword);
 
-	const result = await bcrypt.compare(password, hashedPassword);
+	const valid = await bcrypt.compare(password, hashedPassword);
 
-	return result; // true or false depending on if it's correct
+	if (!valid) {
+        return res.status(401).json({ message: "Incorrect password." });
+    };
+
+    req.session.userId = existingUsers[0].id;
+    res.status(200).json({ message: "Login successful." });
 }
 
 module.exports.LoginUser = LoginUser;

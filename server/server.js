@@ -48,6 +48,7 @@ app.post("/login", async (req, res) => {
 	const { email, password } = req.body;
 
 	try {
+		db.LoginUser(email, password, res);
 	} catch (err) {
 		console.error("We did AN OPPOSIE WOOPSIES", error);
 		res.status(500).json({ message: "Internal server error" });
