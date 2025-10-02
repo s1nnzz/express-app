@@ -66,6 +66,9 @@ jspm_packages/
 
 server/node_modules
 client/node_modules
-server/package-lock.json
 client/package-lock.json
+server/package-lock.json
+client/.parcel-cache/*
+server/package-lock.json
+server/package-lock.json
 server/package-lock.json
