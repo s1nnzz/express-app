@@ -16,20 +16,23 @@ pool.getConnection((err, connection) => {
 		console.error("Error connecting to the database:", err);
 		return;
 	} else {
-		console.log("SIGMA CONNECTED");
+		console.log("SQL connection started successfully");
 		connection.release();
 	}
 });
 
 function GetUserByEmail(email) {}
 
-async function RegisterUser(email, password, res) {
+async function RegisterUser(email, password) {
 	const [existingUsers] = await pool
 		.promise()
 		.execute("SELECT * FROM users WHERE email = ?", [email]);
 
 	if (existingUsers.length > 0) {
-		return res.status(400).json({ message: "Email already in use" });
+		// Throw an error so the route can catch it
+		const err = new Error("Email already in use");
+		err.statusCode = 400;
+		throw err;
 	}
 
 	const hashedPassword = await bcrypt.hash(password, 10);
@@ -44,7 +47,7 @@ async function RegisterUser(email, password, res) {
 	return result;
 }
 
-async function LoginUser(email, password, res) {
+async function LoginUser(email, password, res, req) {
 	const [existingUsers] = await pool
 		.promise()
 		.execute("SELECT * FROM users WHERE email = ?", [email]);
@@ -63,12 +66,21 @@ async function LoginUser(email, password, res) {
 	const valid = await bcrypt.compare(password, hashedPassword);
 
 	if (!valid) {
-        return res.status(401).json({ message: "Incorrect password." });
-    };
+		return res.status(401).json({ message: "Incorrect password." });
+	}
 
-    req.session.userId = existingUsers[0].id;
-    res.status(200).json({ message: "Login successful." });
+	req.session.userId = existingUsers[0].id;
+	res.status(200).json({ message: "Login successful." });
+}
+
+async function isLoggedIn(req, res) {
+	if (req.session && req.session.userId) {
+		res.status(200).json({ loggedIn: true, userId: req.session.userId });
+	} else {
+		res.status(200).json({ loggedIn: false });
+	}
 }
 
 module.exports.LoginUser = LoginUser;
 module.exports.RegisterUser = RegisterUser;
+module.exports.isLoggedIn = isLoggedIn;

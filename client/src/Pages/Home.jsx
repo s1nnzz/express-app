@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function Home() {
 	const [backendData, setBackendData] = useState([{}]);
+	const { isLoggedIn } = useAuth();
 
 	useEffect(() => {
 		fetch("/api")
@@ -22,7 +24,11 @@ function Home() {
 			<div className="buttonsList">
 				<Link to="/menu">View Menu</Link>
 				<Link to="/book">Book a Table</Link>
-				<Link to="/login">Want to view your bookings? Log In</Link>
+				{isLoggedIn ? (
+					<Link to="/bookings">View Bookings</Link>
+				) : (
+					<Link to="/login">Want to view bookings? Log In</Link>
+				)}
 			</div>
 		</div>
 	);

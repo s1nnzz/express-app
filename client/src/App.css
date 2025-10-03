@@ -264,6 +264,55 @@ li:last-child {
 	border-color: var(--primary-color);
 }
 
+.app-message {
+	max-width: 1200px;
+	padding: 1em;
+	border-radius: 10px;
+	color: rgb(34, 34, 34);
+	font-weight: 500;
+	margin-bottom: 1rem;
+	animation: slideIn 0.3s ease-out;
+}
+
+/* Success messages (2xx status codes) */
+.app-message--success {
+	background-color: #d1fae5;
+	border: 1px solid #10b981;
+	color: #065f46;
+}
+
+/* Error messages (4xx, 5xx status codes) */
+.app-message--error {
+	background-color: #ffb3b3;
+	border: 1px solid #f5576c;
+	color: #dc2626;
+}
+
+/* Warning messages (3xx status codes or custom warnings) */
+.app-message--warning {
+	background-color: #fef3c7;
+	border: 1px solid #f59e0b;
+	color: #92400e;
+}
+
+/* Info messages (default) */
+.app-message--info {
+	background-color: #dbeafe;
+	border: 1px solid #3b82f6;
+	color: #1e40af;
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 /* Loading and States */
 .loading {
 	display: inline-block;
