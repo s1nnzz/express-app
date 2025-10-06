@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Logout from "./Pages/Logout";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -94,6 +95,14 @@ function App() {
 								path="/logout"
 								element={
 									<Logout setMessage={setMessageWithType} />
+								}
+							/>
+							<Route
+								path="/forgot"
+								element={
+									<ForgotPassword
+										setMessage={setMessageWithType}
+									/>
 								}
 							/>
 						</Routes>

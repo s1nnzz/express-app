@@ -44,8 +44,6 @@ app.get("/api", (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-	console.log("Login attempt received", req.body);
-
 	const { email, password } = req.body;
 
 	try {
@@ -79,8 +77,6 @@ app.post("/api/logout", (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-	console.log("Register attempt received", req.body);
-
 	const { email, password } = req.body;
 	try {
 		const result = await db.RegisterUser(email, password); // ⬅️ await, no res passed

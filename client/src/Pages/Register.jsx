@@ -54,22 +54,37 @@ function Register(props) {
 	};
 
 	return (
-		<div className="login">
-			<h1>Register</h1>
-			<form onSubmit={handleSubmit}>
-				<label>
-					Email:
-					<input type="email" name="email" required />
-				</label>
-				<br />
-				<label>
-					Password:
-					<input type="password" name="password" required />
-				</label>
-				<br />
-				<button type="submit">Register</button>
-			</form>
-			<Link to="/login">Already have an account? Login here.</Link>
+		<div className="auth-container">
+			<div className="auth-card">
+				<h1>Create Account</h1>
+				<p className="auth-subtitle">Join us today</p>
+				<form onSubmit={handleSubmit} className="auth-form">
+					<div className="form-group">
+						<label htmlFor="email">Email Address</label>
+						<input type="email" id="email" name="email" required />
+					</div>
+					<div className="form-group">
+						<label htmlFor="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							required
+						/>
+					</div>
+					<button
+						type="submit"
+						className="btn btn-primary auth-submit"
+					>
+						Create Account
+					</button>
+				</form>
+				<div className="auth-links">
+					<Link to="/login" className="auth-link">
+						Already have an account? <span>Sign in here</span>
+					</Link>
+				</div>
+			</div>
 		</div>
 	);
 }

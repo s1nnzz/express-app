@@ -35,22 +35,40 @@ function Login(props) {
 	};
 
 	return (
-		<div className="login">
-			<h1>Login</h1>
-			<form onSubmit={handleSubmit}>
-				<label>
-					Email:
-					<input type="email" name="email" required />
-				</label>
-				<br />
-				<label>
-					Password:
-					<input type="password" name="password" required />
-				</label>
-				<br />
-				<button type="submit">Login</button>
-			</form>
-			<Link to="/register">Register if you don't have an account.</Link>
+		<div className="auth-container">
+			<div className="auth-card">
+				<h1>Welcome Back</h1>
+				<p className="auth-subtitle">Sign in to your account</p>
+				<form onSubmit={handleSubmit} className="auth-form">
+					<div className="form-group">
+						<label htmlFor="email">Email Address</label>
+						<input type="email" id="email" name="email" required />
+					</div>
+					<div className="form-group">
+						<label htmlFor="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							required
+						/>
+					</div>
+					<button
+						type="submit"
+						className="btn btn-primary auth-submit"
+					>
+						Sign In
+					</button>
+				</form>
+				<div className="auth-links">
+					<Link to="/register" className="auth-link">
+						Don't have an account? <span>Register here</span>
+					</Link>
+					<Link to="/forgot" className="auth-link">
+						<span>Forgot your password?</span>
+					</Link>
+				</div>
+			</div>
 		</div>
 	);
 }
