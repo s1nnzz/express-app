@@ -1,0 +1,89 @@
+/* ============================================
+   Responsive Design - Mobile Optimized
+   ============================================ */
+
+@media (max-width: 768px) {
+	nav {
+		padding: 1.2rem 1.5rem;
+		flex-direction: column;
+		gap: 1.2rem;
+		align-items: flex-start;
+	}
+
+	nav h2 {
+		font-size: 1.3rem;
+	}
+
+	#right-nav {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.content {
+		padding: 2rem 1.5rem;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+	}
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	.card {
+		padding: 2rem;
+	}
+}
+
+@media (max-width: 480px) {
+	nav {
+		padding: 1rem;
+	}
+
+	#right-nav {
+		gap: 1rem;
+	}
+
+	.content {
+		padding: 1.5rem 1rem;
+	}
+
+	h1 {
+		font-size: 2rem;
+	}
+
+	h2 {
+		font-size: 1.6rem;
+	}
+
+	.buttonsList {
+		margin-top: 3em;
+	}
+
+	.card {
+		padding: 1.5rem;
+	}
+}
+
+/* Accessibility - Respecting user preferences */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+	:root {
+		--border-light: #ffffff;
+		--border-subtle: #ffffff;
+		--text-tertiary: #ffffff;
+	}
+}

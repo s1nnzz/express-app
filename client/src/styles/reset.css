@@ -1,0 +1,75 @@
+/* ============================================
+   CSS Reset and Base Styles
+   ============================================ */
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Cormorant Garamond", "Playfair Display", "Georgia", serif;
+	line-height: 1.8;
+	color: var(--text-primary);
+	background: var(--bg-primary);
+	font-size: 16px;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	position: relative;
+	letter-spacing: 0.3px;
+}
+
+/* Selection Styling */
+::selection {
+	background: rgba(212, 175, 55, 0.2);
+	color: var(--text-primary);
+}
+
+::-moz-selection {
+	background: rgba(212, 175, 55, 0.2);
+	color: var(--text-primary);
+}
+
+/* Focus States - Subtle & Elegant */
+*:focus {
+	outline: 1px solid var(--accent-gold);
+	outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+	outline: none;
+}
+
+/* Interactive Elements */
+a,
+button,
+.btn {
+	cursor: pointer;
+}
+
+/* Scrollbar Styling - Minimal & Elegant */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--accent-gold);
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--accent-gold-light);
+}

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
+import personsvg from "url:../assets/person.svg";
 
 function Nav(props) {
 	const { isLoggedIn } = useAuth();
@@ -20,6 +21,17 @@ function Nav(props) {
 				)}
 				<Link to="/about">About</Link>
 				<Link to="/contact">Contact</Link>
+				<Link
+					to="/profile"
+					className="nav-profile-link"
+					title="Profile"
+				>
+					<img
+						src={personsvg}
+						alt="Profile"
+						className="nav-profile-icon"
+					/>
+				</Link>
 			</div>
 		</nav>
 	);

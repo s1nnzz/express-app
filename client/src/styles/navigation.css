@@ -1,0 +1,145 @@
+/* ============================================
+   Navigation Styles - Minimalist & Elegant
+   ============================================ */
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--surface-overlay);
+	padding: 1.5rem 3rem;
+	border-bottom: 1px solid var(--border-light);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(20px) saturate(180%);
+	-webkit-backdrop-filter: blur(20px) saturate(180%);
+	transition: all var(--transition-normal);
+}
+
+nav::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 1px;
+	background: var(--gradient-gold);
+	opacity: 0;
+	transition: all var(--transition-slow);
+}
+
+nav:hover::after {
+	width: 80%;
+	opacity: 0.6;
+}
+
+nav h2 {
+	font-size: 1.5rem;
+	font-weight: 400;
+	letter-spacing: 2px;
+	position: relative;
+	text-transform: uppercase;
+	font-family: "Inter", -apple-system, sans-serif;
+}
+
+nav h2 a {
+	color: var(--text-primary);
+	text-decoration: none;
+	transition: all var(--transition-normal);
+	position: relative;
+	display: inline-block;
+}
+
+nav h2 a::after {
+	content: "";
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	width: 20px;
+	height: 1px;
+	background: var(--accent-gold);
+	transition: width var(--transition-normal);
+}
+
+nav h2 a:hover {
+	color: var(--accent-gold);
+	letter-spacing: 3px;
+}
+
+nav h2 a:hover::after {
+	width: 100%;
+}
+
+.tagline {
+	font-weight: 300;
+	color: var(--text-muted);
+	font-size: 0.75rem;
+	opacity: 0.7;
+	transition: opacity var(--transition-normal);
+	font-family: "Inter", -apple-system, sans-serif;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+nav:hover .tagline {
+	opacity: 1;
+	color: var(--text-tertiary);
+}
+
+#right-nav {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+#right-nav a {
+	color: var(--text-secondary);
+	text-decoration: none;
+	padding: 0.4rem 0;
+	font-weight: 400;
+	font-size: 0.9rem;
+	font-family: "Inter", -apple-system, sans-serif;
+	letter-spacing: 0.5px;
+	transition: all var(--transition-normal);
+	position: relative;
+	border: none;
+	background: transparent;
+}
+
+#right-nav a::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background: var(--accent-gold);
+	transition: width var(--transition-normal);
+}
+
+#right-nav a:hover {
+	color: var(--text-primary);
+}
+
+#right-nav a:hover::after {
+	width: 100%;
+}
+
+#right-nav a:active {
+	color: var(--accent-gold);
+}
+
+/* Profile Icon Styling */
+.nav-profile-icon {
+	width: 18px;
+	height: 18px;
+	display: block;
+	opacity: 0.7;
+	transition: opacity var(--transition-normal);
+}
+
+.nav-profile-link:hover .nav-profile-icon {
+	opacity: 1;
+}

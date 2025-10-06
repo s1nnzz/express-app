@@ -1,0 +1,30 @@
+/* ============================================
+   Main Stylesheet - Modular CSS Architecture
+   Restaurant App - Dark Elegant Theme
+   ============================================ */
+
+/* Import all modular stylesheets in order */
+@import "./styles/variables.css";
+@import "./styles/reset.css";
+@import "./styles/background.css";
+@import "./styles/layout.css";
+@import "./styles/typography.css";
+@import "./styles/navigation.css";
+@import "./styles/components.css";
+@import "./styles/pages.css";
+@import "./styles/auth.css";
+@import "./styles/responsive.css";
+
+/* 
+  File Structure:
+  - variables.css    : CSS custom properties (colors, spacing, transitions)
+  - reset.css        : Reset styles and base elements
+  - background.css   : Animated backgrounds and visual effects
+  - layout.css       : Main layout structure and containers
+  - typography.css   : Headings, paragraphs, and text styles
+  - navigation.css   : Navigation bar and profile icon
+  - components.css   : Reusable components (cards, buttons, messages)
+  - pages.css        : Page-specific styles (home page)
+  - auth.css         : Authentication forms and pages
+  - responsive.css   : Media queries and responsive design
+*/

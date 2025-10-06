@@ -32,15 +32,8 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use((req, res, next) => {
-	console.log(
-		`${req.method} request for '${req.url}' - ${JSON.stringify(req.body)}`
-	);
-	next();
-});
-
 app.get("/api", (req, res) => {
-	res.json({ users: ["user1", "user2", "user3"] });
+	res.json({});
 });
 
 app.post("/api/login", async (req, res) => {

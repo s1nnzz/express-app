@@ -1,0 +1,63 @@
+/* ============================================
+   CSS Variables - Theme Configuration
+   ============================================ */
+
+:root {
+	/* Restaurant Dark Theme Color Palette */
+	--bg-primary: #0a0a0a;
+	--bg-secondary: #121212;
+	--bg-tertiary: #1a1a1a;
+	--bg-card: #161616;
+
+	/* Elegant Surfaces */
+	--surface-elevated: rgba(30, 30, 30, 0.8);
+	--surface-card: rgba(22, 22, 22, 0.95);
+	--surface-overlay: rgba(10, 10, 10, 0.98);
+
+	/* Sophisticated Text Colors */
+	--text-primary: #f5f5f5;
+	--text-secondary: #d4d4d4;
+	--text-tertiary: #a3a3a3;
+	--text-muted: #737373;
+	--text-accent: #d4af37; /* Gold accent for restaurant elegance */
+
+	/* Restaurant Accent Colors */
+	--accent-gold: #d4af37;
+	--accent-gold-light: #e8c96f;
+	--accent-gold-dark: #b8941f;
+	--accent-warm: #c17c54;
+	--accent-cream: #f5f1e8;
+	--accent-success: #22c55e;
+	--accent-warning: #f59e0b;
+	--accent-error: #ef4444;
+
+	/* Elegant Gradients */
+	--gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+	--gradient-subtle: linear-gradient(
+		180deg,
+		rgba(212, 175, 55, 0.1) 0%,
+		transparent 100%
+	);
+	--gradient-overlay: linear-gradient(
+		180deg,
+		rgba(10, 10, 10, 0) 0%,
+		rgba(10, 10, 10, 0.9) 100%
+	);
+
+	/* Refined Borders */
+	--border-subtle: rgba(212, 175, 55, 0.15);
+	--border-light: rgba(255, 255, 255, 0.08);
+	--border-accent: rgba(212, 175, 55, 0.3);
+
+	/* Soft Shadows */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+	--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+	--shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+	--shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.15);
+
+	/* Smooth Transitions */
+	--transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

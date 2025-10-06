@@ -12,7 +12,7 @@ import ForgotPassword from "./Pages/ForgotPassword";
 
 import { AuthProvider } from "./contexts/AuthContext";
 
-import "./App.css";
+import "./App-new.css";
 
 function App() {
 	const [message, setMessage] = useState("");
