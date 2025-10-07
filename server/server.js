@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 const db = require("./db");
@@ -21,16 +22,24 @@ app.use(
 	})
 );
 
-app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept"
-	);
-	res.header("Access-Control-Allow-Credentials", "true");
-	next();
-});
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+		credentials: true,
+	})
+);
+
+// app.use((req, res, next) => {
+// 	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+// 	res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+// 	res.header(
+// 		"Access-Control-Allow-Headers",
+// 		"Origin, X-Requested-With, Content-Type, Accept"
+// 	);
+// 	res.header("Access-Control-Allow-Credentials", "true");
+// 	next();
+// });
 
 app.get("/api", (req, res) => {
 	res.json({});
@@ -92,6 +101,24 @@ app.post("/api/authcheck", async (req, res) => {
 	} catch (error) {
 		console.error("Error during auth check:", error);
 		res.status(500).json({ message: "Internal server error" });
+	}
+});
+
+app.post("/api/forgot", async (req, res) => {
+	const { email } = req.body; // Fixed: removed .email
+	try {
+		await db.createPasswordReset(email, res); // Added await
+	} catch (err) {
+		res.status(500).json({ message: "Internal server error: " + err });
+	}
+});
+
+app.post("/api/reset", async (req, res) => {
+	const { token, password } = req.body;
+	try {
+		await db.completePasswordReset(token, password, res);
+	} catch (err) {
+		res.status(500).json({ message: "Internal server error: " + err });
 	}
 });
 

@@ -1,13 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function ForgotPassword(props) {
+function Reset(props) {
 	const { setMessage } = props;
 	const { isLoggedIn } = useAuth();
 	const navigate = useNavigate();
 
+	const [searchParams] = useSearchParams();
+	const email = searchParams.get("email");
+	const token = searchParams.get("token");
+
+	useEffect(() => {
+		if (!email || !token) {
+			setMessage("Invalid password reset link.", "error");
+			navigate("/forgot");
+		}
+	}, [email, token, setMessage, navigate]);
+
+	// check login state
 	useEffect(() => {
 		if (isLoggedIn) {
 			setMessage("You are already logged in.", "info");
@@ -17,14 +29,15 @@ function ForgotPassword(props) {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const response = await fetch("/api/forgot", {
+		const response = await fetch("/api/reset", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			credentials: "include",
 			body: JSON.stringify({
-				email: event.target.email.value,
+				password: event.target.password.value,
+				token: token,
 			}),
 		});
 		const data = await response.json();
@@ -43,14 +56,17 @@ function ForgotPassword(props) {
 	return (
 		<div className="auth-container">
 			<div className="auth-card">
-				<h1>Forgot Password</h1>
-				<p className="auth-subtitle">
-					Enter your email for a code to reset your password.
-				</p>
+				<h1>Password Reset</h1>
+				<p className="auth-subtitle">Resetting password for {email}.</p>
 				<form onSubmit={handleSubmit} className="auth-form">
 					<div className="form-group">
-						<label htmlFor="email">Email Address</label>
-						<input type="email" id="email" name="email" required />
+						<label htmlFor="email">New Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							required
+						/>
 					</div>
 					<button
 						type="submit"
@@ -69,4 +85,4 @@ function ForgotPassword(props) {
 	);
 }
 
-export default ForgotPassword;
+export default Reset;

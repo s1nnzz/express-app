@@ -9,6 +9,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Logout from "./Pages/Logout";
 import ForgotPassword from "./Pages/ForgotPassword";
+import Reset from "./Pages/Reset";
 
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -103,6 +104,12 @@ function App() {
 									<ForgotPassword
 										setMessage={setMessageWithType}
 									/>
+								}
+							/>
+							<Route
+								path="/reset"
+								element={
+									<Reset setMessage={setMessageWithType} />
 								}
 							/>
 						</Routes>
