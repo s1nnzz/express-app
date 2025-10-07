@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+const chalk = require("chalk");
+
 const db = require("./db");
 
 const session = require("express-session");
@@ -51,7 +53,6 @@ app.post("/api/login", async (req, res) => {
 	try {
 		db.LoginUser(email, password, res, req);
 	} catch (err) {
-		console.error("We did AN OPPOSIE WOOPSIES", error);
 		res.status(500).json({ message: "Internal server error" });
 	}
 });
@@ -60,7 +61,7 @@ app.post("/api/logout", (req, res) => {
 	if (req.session) {
 		req.session.destroy((err) => {
 			if (err) {
-				console.error("Error during logout:", err);
+				console.log(chalk.redBright("Error during logout:"), err);
 				return res
 					.status(500)
 					.json({ message: "Internal server error" });
@@ -88,7 +89,7 @@ app.post("/api/register", async (req, res) => {
 			userId: result.insertId,
 		});
 	} catch (error) {
-		console.error("Error during registration:", error);
+		console.log(chalk.redBright("Error during registration:"), error);
 		res.status(error.statusCode || 500).json({
 			message: error.message || "Internal server error",
 		});
@@ -99,7 +100,7 @@ app.post("/api/authcheck", async (req, res) => {
 	try {
 		db.isLoggedIn(req, res);
 	} catch (error) {
-		console.error("Error during auth check:", error);
+		console.log(chalk.redBright("Error during auth check:"), error);
 		res.status(500).json({ message: "Internal server error" });
 	}
 });
@@ -123,5 +124,5 @@ app.post("/api/reset", async (req, res) => {
 });
 
 app.listen(5000, () => {
-	console.log("Server is running on http://localhost:5000");
+	console.log(chalk.cyanBright("Server is running on http://localhost:5000"));
 });

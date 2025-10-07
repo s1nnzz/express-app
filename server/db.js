@@ -2,25 +2,93 @@ const mysql = require("mysql2"); // Connecting to SQL database
 const bcrypt = require("bcrypt"); // Password hashing library
 const crypto = require("crypto");
 
-const pool = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "express_test",
-	connectionLimit: 10,
-	waitForConnections: true,
-	queueLimit: 0,
-});
+const chalk = require("chalk"); // colored console output
 
-pool.getConnection((err, connection) => {
-	if (err) {
-		console.error("Error connecting to the database:", err);
-		return;
-	} else {
-		console.log("SQL connection started successfully");
-		connection.release();
+const dbSchemaFile = "./dbschema.sql";
+
+let pool;
+
+async function checkDatabaseExists(connection) {
+	try {
+		const [databases] = await connection.query(
+			"SHOW DATABASES LIKE 'express_test'"
+		);
+		return databases.length > 0;
+	} catch (err) {
+		console.error(
+			chalk.redBright("Error checking database existence:"),
+			err
+		);
+		return false;
 	}
-});
+}
+
+async function runCreateDatabase(connection) {
+	const schemaSQL = require("fs").readFileSync(dbSchemaFile, "utf8");
+
+	const statements = schemaSQL
+		.split(";")
+		.map((stmt) => stmt.trim()) // trim each one
+		.filter((stmt) => stmt.length > 0); // remove empty statements
+
+	for (const statement of statements) {
+		if (statement.trim()) {
+			console.log(
+				chalk.blueBright(`Executing: ${statement.substring(0, 50)}...`)
+			);
+			await connection.query(statement);
+		}
+	}
+
+	console.log(chalk.greenBright("Database schema setup completed"));
+}
+
+async function initializeDatabase() {
+	try {
+		const connection = await mysql // use a single connection to check/create DB
+			.createConnection({
+				host: "localhost",
+				user: "root",
+				password: "",
+			})
+			.promise();
+
+		// Check if database already exists
+		const databaseExists = await checkDatabaseExists(connection);
+
+		if (!databaseExists) {
+			console.log(
+				chalk.yellowBright(
+					"Database 'express_test' not found, setting up database schema..."
+				)
+			);
+
+			await runCreateDatabase(connection);
+		}
+
+		// Close the single connection
+		await connection.end();
+
+		// Now create our main pool since we know the database exists
+		pool = mysql.createPool({
+			host: "localhost",
+			user: "root",
+			password: "",
+			database: "express_test",
+			connectionLimit: 10,
+			waitForConnections: true,
+			queueLimit: 0,
+		});
+
+		console.log(chalk.cyan("Database connection pool established"));
+	} catch (err) {
+		console.error(chalk.redBright("Error initializing database:"), err);
+		throw err;
+	}
+}
+
+// Initialize the database and connection pool
+initializeDatabase();
 
 function GetUserByEmail(email) {}
 
@@ -165,8 +233,6 @@ async function LoginUser(email, password, res, req) {
 	if (!hashedPassword) {
 		return res.status(500).json({ message: "Password error." });
 	}
-
-	console.log(password, hashedPassword);
 
 	const valid = await bcrypt.compare(password, hashedPassword);
 
