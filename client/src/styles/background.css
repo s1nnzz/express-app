@@ -49,9 +49,9 @@ body::after {
 
 @keyframes backgroundShift {
 	0% {
-		transform: translateX(-50px) translateY(-50px) scale(1);
+		transform: translateX(-50px) translateY(-50px) scale(1.2);
 	}
 	100% {
-		transform: translateX(50px) translateY(50px) scale(1.1);
+		transform: translateX(50px) translateY(50px) scale(1.2);
 	}
 }
