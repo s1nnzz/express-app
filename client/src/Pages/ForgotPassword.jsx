@@ -7,6 +7,8 @@ function ForgotPassword(props) {
 	const { setMessage } = props;
 	const { isLoggedIn } = useAuth();
 	const navigate = useNavigate();
+	const [resetToken, setResetToken] = useState(null);
+	const [email, setEmail] = useState("");
 
 	useEffect(() => {
 		if (isLoggedIn) {
@@ -27,16 +29,23 @@ function ForgotPassword(props) {
 				email: event.target.email.value,
 			}),
 		});
+
+		setEmail(event.target.email.value);
+
 		const data = await response.json();
 		console.log(data);
 
 		// Set message color based on status code
 		if (response.ok) {
 			setMessage(data.message, "success");
-			// Update auth state after successful login
+			// Store the reset token to display the link
+			if (data.resetToken) {
+				setResetToken(data.resetToken);
+			}
 		} else {
 			// Error status codes (400, 401, 500, etc.)
 			setMessage(data.message, "error");
+			setResetToken(null);
 		}
 	};
 
@@ -59,6 +68,24 @@ function ForgotPassword(props) {
 						Submit
 					</button>
 				</form>
+
+				{/* Display reset link if token is available */}
+				{resetToken && (
+					<div className="auth-card">
+						<h3>Password Reset Link</h3>
+						<p className="auth-subtitle">
+							Since this is a prototype, here's your password
+							reset link:
+						</p>
+						<Link
+							to={`/reset?email=${email}&token=${resetToken}`}
+							className="btn btn-primary auth-submit"
+						>
+							Reset Your Password
+						</Link>
+					</div>
+				)}
+
 				<div className="auth-links">
 					<Link to="/login" className="auth-link">
 						<span>Back to Sign In</span>

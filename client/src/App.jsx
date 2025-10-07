@@ -51,6 +51,12 @@ function App() {
 			.catch(() => setIsLoggedIn(false));
 	}, []);
 
+	React.useEffect(() => {
+		if (message !== "") {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	}, [message, setMessage]);
+
 	return (
 		<AuthProvider>
 			<Router>
