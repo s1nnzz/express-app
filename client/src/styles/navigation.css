@@ -131,15 +131,17 @@ nav:hover .tagline {
 	color: var(--accent-gold);
 }
 
+#right-nav img {
+	width: 18px;
+	height: 18px;
+	display: block;
+	color: white;
+}
+
 /* Profile Icon Styling */
 .nav-profile-icon {
 	width: 18px;
 	height: 18px;
 	display: block;
-	opacity: 0.7;
-	transition: opacity var(--transition-normal);
-}
-
-.nav-profile-link:hover .nav-profile-icon {
-	opacity: 1;
+	color: white;
 }
