@@ -72,3 +72,5 @@ client/.parcel-cache/*
 server/package-lock.json
 server/package-lock.json
 server/package-lock.json
+
+.prettierignore
