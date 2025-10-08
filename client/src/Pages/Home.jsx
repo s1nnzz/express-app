@@ -14,7 +14,7 @@ function Home() {
 
 	return (
 		<div>
-			<h2>T-Level Restarant</h2>
+			<h2>T-Level Restaurant</h2>
 			<h3 className="tagline">Looking for something to eat?</h3>
 			<h3 className="tagline">
 				Look through our world-class dishes, and find something you

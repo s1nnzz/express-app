@@ -39,10 +39,20 @@ function Login(props) {
 			<div className="auth-card">
 				<h1>Welcome Back</h1>
 				<p className="auth-subtitle">Sign in to your account</p>
-				<form onSubmit={handleSubmit} className="auth-form">
+				<form
+					onSubmit={handleSubmit}
+					className="auth-form"
+					autoComplete="off"
+				>
 					<div className="form-group">
 						<label htmlFor="email">Email Address</label>
-						<input type="email" id="email" name="email" required />
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							autoComplete="off"
+						/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="password">Password</label>
@@ -51,6 +61,7 @@ function Login(props) {
 							id="password"
 							name="password"
 							required
+							autoComplete="off"
 						/>
 					</div>
 					<button

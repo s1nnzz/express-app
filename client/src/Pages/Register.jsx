@@ -58,10 +58,20 @@ function Register(props) {
 			<div className="auth-card">
 				<h1>Create Account</h1>
 				<p className="auth-subtitle">Join us today</p>
-				<form onSubmit={handleSubmit} className="auth-form">
+				<form
+					onSubmit={handleSubmit}
+					className="auth-form"
+					autoComplete="off"
+				>
 					<div className="form-group">
 						<label htmlFor="email">Email Address</label>
-						<input type="email" id="email" name="email" required />
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							autoComplete="off"
+						/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="password">Password</label>
@@ -70,6 +80,7 @@ function Register(props) {
 							id="password"
 							name="password"
 							required
+							autoComplete="off"
 						/>
 					</div>
 					<button

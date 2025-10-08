@@ -56,10 +56,20 @@ function ForgotPassword(props) {
 				<p className="auth-subtitle">
 					Enter your email for a code to reset your password.
 				</p>
-				<form onSubmit={handleSubmit} className="auth-form">
+				<form
+					onSubmit={handleSubmit}
+					className="auth-form"
+					autoComplete="off"
+				>
 					<div className="form-group">
 						<label htmlFor="email">Email Address</label>
-						<input type="email" id="email" name="email" required />
+						<input
+							type="email"
+							id="email"
+							name="email"
+							required
+							autoComplete="off"
+						/>
 					</div>
 					<button
 						type="submit"

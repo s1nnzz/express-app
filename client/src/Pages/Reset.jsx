@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Reset(props) {
@@ -58,14 +58,19 @@ function Reset(props) {
 			<div className="auth-card">
 				<h1>Password Reset</h1>
 				<p className="auth-subtitle">Resetting password for {email}.</p>
-				<form onSubmit={handleSubmit} className="auth-form">
+				<form
+					onSubmit={handleSubmit}
+					className="auth-form"
+					autoComplete="off"
+				>
 					<div className="form-group">
-						<label htmlFor="email">New Password</label>
+						<label htmlFor="password">New Password</label>
 						<input
 							type="password"
 							id="password"
 							name="password"
 							required
+							autoComplete="off"
 						/>
 					</div>
 					<button
